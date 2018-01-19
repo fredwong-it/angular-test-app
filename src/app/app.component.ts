@@ -5,6 +5,17 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'app';
+
+  buttonAClick(tooltip) {
+    console.log(tooltip);
+    //tooltip.toggle();
+  }
+
+  buttonBClick(tooltip) {
+    console.log(tooltip);
+    //tooltip.toggle();
+  }
 }
