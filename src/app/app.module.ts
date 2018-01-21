@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { TooltipModule } from './shared/components/tooltip/tooltip.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AppComponent } from './app.component';
     BrowserModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    MatTooltipModule
+    MatTooltipModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
