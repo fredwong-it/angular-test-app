@@ -16,7 +16,7 @@ export class TooltipService  {
     ) {
         Observable.fromEvent(document, 'keydown').subscribe((e: KeyboardEvent) => {
             if (e.code === 'Escape') {
-                this.tooltipInstance.show = false;
+                this.hide();
             }
         });
 
@@ -49,7 +49,7 @@ export class TooltipService  {
     }
 
     hide() {
-        this.tooltipInstance.show = true;
+        this.tooltipInstance.show = false;
     }
 
     private getTooltipSpan() {
@@ -86,10 +86,11 @@ export class TooltipService  {
     }
 
     private updateTooltipTop() {
+        const navHeight = 56;
         const show = this.tooltipInstance.show;
 
         if (show) {
-            if (window.pageYOffset > this.getAboveTooltipTop()) {
+            if (window.pageYOffset + navHeight > this.getAboveTooltipTop()) {
                 this.getTooltipSpan().style.top = this.getBottomTooltipTop() + 'px';
             } else {
                 this.getTooltipSpan().style.top = this.getAboveTooltipTop() + 'px';
