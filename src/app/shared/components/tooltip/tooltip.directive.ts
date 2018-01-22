@@ -4,17 +4,13 @@ import { TooltipService } from './tooltip.service';
 @Directive({
   selector: '[tooltip]'
 })
-export class TooltipDirective implements AfterViewInit {
+export class TooltipDirective {
   @Input('tooltip') tooltip;
 
   constructor(
     private viewContainerRef: ViewContainerRef,
     private tooltipService: TooltipService
   ) {
-  }
-
-  ngAfterViewInit() {
-    this.tooltipService.create();
   }
 
   @HostListener('click', ['$event']) onClick($event) {

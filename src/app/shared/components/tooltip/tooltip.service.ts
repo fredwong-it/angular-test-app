@@ -1,10 +1,10 @@
-import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, ElementRef } from '@angular/core';
+import { Injectable, ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, ElementRef, OnInit } from '@angular/core';
 import { TooltipComponent } from './tooltip.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 
 @Injectable()
-export class TooltipService  {
+export class TooltipService {
     componentRef;
     buttonRef: ElementRef;
     tooltipInstance;
@@ -23,9 +23,11 @@ export class TooltipService  {
         Observable.fromEvent(document, 'scroll').subscribe((e) => {
             this.updateTooltipTop();
         });
+
+        this.create();
     }
 
-    create() {
+    private create() {
         if (!this.componentRef) {
             this.componentRef = this.componentFactoryResolver.resolveComponentFactory(TooltipComponent).create(this.injector);
             this.componentRef.changeDetectorRef.detectChanges();
@@ -86,6 +88,7 @@ export class TooltipService  {
     }
 
     private updateTooltipTop() {
+        // should be 0, set to 56 because I created the nav-bar for this side, quick fix, should not do like this
         const navHeight = 56;
         const show = this.tooltipInstance.show;
 
